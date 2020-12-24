@@ -1,13 +1,26 @@
-##############################################################################################################################################
-GPIO and Interrupt Latency Measurement  ---------------------------------------------------------------------------------------------------------------------------------------------- 
-NAME: ARJUN BHATNAGAR            ----------------------------------------------------------------------------------------------------------------------------------------------
+Interrupt Latency and context switch measurement on Zephyr RTOS for Galileo Gen2 
+
+The application will measure:
+
+Interrupt latency with no background task, only a single task is running to trigger the GPIO pin for the interrupt. 
+
+Interrupt latency with a background task - a simple message passing between two threads which might delay the interrupt handler because of the use of the data passing message queue API.
+
+Context switch latency using synchronization methods. 
+
+For Zephyr Version 1.14.0 
+Doc: https://docs.zephyrproject.org/1.14.0/
+Zephyr 1.14.0 source code: https://github.com/zephyrproject-rtos/zephyr/tree/v1.14-branch
+
+What you will also need is a galileo gen 2 board, an RGD LED module and some male/female connecting wires 
 
 Please follow the following procedure to run the application:
 
-Step 1: In the folder measure_43,you will find the files CMakeLists.txt
-        and prj.conf and the folder src with the file main.c
-Step 2: Copy this folder to zephyr/samples 
-Step 3: Open terminal set environment variables as following:
+Step 1: Find the files CMakeLists.txt, prj.conf and the folder src with the file main.c
+
+Step 2: Copy these file to a folder (add any "file_name") in zephyr/samples 
+
+Step 3: Open terminal to set environment variables as following:
         
         "export $ZEPHYR_TOOLCHAIN_VARIANT=zephyr"
         "export $ZEPHYR_SDK_INSTALL_DIR= ~/path_to_sdk_install_dir"
@@ -16,12 +29,12 @@ Step 3: Open terminal set environment variables as following:
 
 Step 4: In order to build the application use the following steps:
          
-        cd to zephyr/samples/measure_43
+        cd to zephyr/samples/"file_name"
         mkdir build && cd build
         cmake -DBOARD=galileo ..
         make 
  
-Step 5: copy file zephyr.strip from measure/build/zephyr to the SD CARD.
+Step 5: Copy file zephyr.strip from "file_name"/build/zephyr to the SD CARD.
 
 Step 6: Connect the IO pins on the galieo as following:
         
